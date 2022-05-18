@@ -19,7 +19,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.inMemoryAuthentication()
                 .withUser("springuser").password(passwordEncoder().encode("user123")).roles("USER")
                 .and()
-                .withUser("springadmin").password(passwordEncoder().encode("admin123")).roles("ADMIN", "USER");
+                .withUser("springadmin").password(passwordEncoder().encode("admin123")).roles("ADMIN");
     }
     @Override
     public void configure(HttpSecurity http) throws Exception {
