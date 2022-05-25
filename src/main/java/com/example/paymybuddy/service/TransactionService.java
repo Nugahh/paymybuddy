@@ -9,9 +9,9 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class TransactionService {
+public interface TransactionService {
 
-    @Autowired
+    /*@Autowired
     private TransactionRepository transactionRepository;
 
     public Iterable<Transaction> getAllTransactions() {
@@ -29,5 +29,5 @@ public class TransactionService {
     public Optional<Transaction> getTransactionsByUser(User user) {
         return transactionRepository.findByUser(user);
     }
-
+*/
 }

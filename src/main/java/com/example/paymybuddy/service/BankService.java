@@ -6,15 +6,16 @@ import com.example.paymybuddy.repository.BankRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
-public class BankService {
+public interface BankService {
 
-    @Autowired
+  /*  @Autowired
     private BankRepository bankRepository;
 
-    public Iterable<Bank> getAllBanks() {
+    public List<Bank> getAllBanks() {
         return bankRepository.findAll();
     }
 
@@ -28,5 +29,5 @@ public class BankService {
 
     public Optional<Bank> getBankByUser(User user) {
         return bankRepository.findByUser(user);
-    }
+    }*/
 }

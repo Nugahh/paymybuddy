@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class TransactionController {
 
-    @Autowired
-    private TransactionService transactionService;
+/*    @Autowired
+    private TransactionService transactionService;*/
 
-    @GetMapping(value = "/user")
+   /* @GetMapping(value = "/user")
     public void getAll() {
         transactionService.getAllTransactions();
     }
@@ -23,5 +23,5 @@ public class TransactionController {
     @PostMapping(value = "/user")
     public void addTransaction(@RequestBody Transaction transaction) {
         transactionService.addTransaction(transaction);
-    }
+    }*/
 }

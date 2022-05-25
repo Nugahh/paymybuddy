@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class BankController {
 
-    private final BankService bankService;
+   /* private final BankService bankService;
 
     @Autowired
     public BankController(BankService bankService) {
         this.bankService = bankService;
-    }
+    }*/
 
-    @GetMapping
+/*    @GetMapping
     public void getAll() {
         bankService.getAllBanks();
     }
@@ -27,5 +27,5 @@ public class BankController {
     @PostMapping(value = "/bank")
     public void registerBank(@RequestBody Bank bank) {
         bankService.addBank(bank);
-    }
+    }*/
 }

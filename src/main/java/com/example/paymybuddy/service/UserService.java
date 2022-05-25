@@ -1,17 +1,16 @@
 package com.example.paymybuddy.service;
 
 import com.example.paymybuddy.model.User;
-import com.example.paymybuddy.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.paymybuddy.web.dto.UserRegistrationDTO;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
-
 @Service
-public class UserService {
+public interface UserService extends UserDetailsService {
 
-    @Autowired
+    User save(UserRegistrationDTO registrationDTO);
+
+    /*@Autowired
     private UserRepository userRepository;
 
     public Iterable<User> getAllUsers() {
@@ -32,5 +31,5 @@ public class UserService {
 
     public void deleteById(Integer id) {
         userRepository.deleteById(id);
-    }
+    }*/
 }

@@ -16,13 +16,13 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping
+  /*  @GetMapping(value = "/getallusers")
     public void getAll() {
         userService.getAllUsers();
-    }
-
+    }*/
+/*
     @PostMapping(value = "/user")
     public void addTransaction(@RequestBody User user) {
         userService.addUser(user);
-    }
+    }*/
 }

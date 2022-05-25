@@ -8,9 +8,9 @@ import javax.annotation.security.RolesAllowed;
 @RestController
 public class LoginController {
 
-    @GetMapping("/login")
+   /* @GetMapping("/login")
     @RolesAllowed("ADMIN")
     public String getAdmin() {
         return "login";
-    }
+    }*/
 }
