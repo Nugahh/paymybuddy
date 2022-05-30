@@ -1,8 +1,7 @@
-package com.example.paymybuddy.web;
+package com.example.paymybuddy.controller;
 
-import com.example.paymybuddy.model.User;
 import com.example.paymybuddy.service.UserService;
-import com.example.paymybuddy.web.dto.UserRegistrationDTO;
+import com.example.paymybuddy.DTO.UserRegistrationDTO;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 

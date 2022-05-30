@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface BankRepository extends JpaRepository<Bank, Integer> {
+public interface BankRepository extends JpaRepository<Bank, Long> {
 
 //    Optional<Bank> findByUser(User user);
 

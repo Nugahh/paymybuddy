@@ -1,4 +1,4 @@
-package com.example.paymybuddy.web.dto;
+package com.example.paymybuddy.DTO;
 
 import lombok.Getter;
 import lombok.Setter;

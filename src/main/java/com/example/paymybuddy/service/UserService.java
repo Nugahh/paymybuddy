@@ -1,35 +1,26 @@
 package com.example.paymybuddy.service;
 
+import com.example.paymybuddy.DTO.UserRegistrationDTO;
 import com.example.paymybuddy.model.User;
-import com.example.paymybuddy.web.dto.UserRegistrationDTO;
+import com.example.paymybuddy.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public interface UserService extends UserDetailsService {
 
-    User save(UserRegistrationDTO registrationDTO);
+    void save(UserRegistrationDTO registrationDTO);
 
-    /*@Autowired
-    private UserRepository userRepository;
+    void addFriend(User user, User friend);
 
-    public Iterable<User> getAllUsers() {
-        return userRepository.findAll();
-    }
+    Iterable<User> getAllUsers();
 
-    public Optional<User> findUserByEmail(String email) {
-        return userRepository.findByEmail(email);
-    }
+    Optional<User> getUserByEmail(String email);
 
-    public User addUser(User user) {
-        return userRepository.save(user);
-    }
+    Optional<User> getUserById(Long id);
 
-    public Optional<User> getUserById(Integer id) {
-        return userRepository.findById(id);
-    }
-
-    public void deleteById(Integer id) {
-        userRepository.deleteById(id);
-    }*/
+    void deleteById(Long id);
 }

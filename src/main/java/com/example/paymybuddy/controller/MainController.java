@@ -1,4 +1,4 @@
-package com.example.paymybuddy.web;
+package com.example.paymybuddy.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,8 +13,8 @@ public class MainController {
         return "login";
     }
 
-    @GetMapping("/")
+   /* @GetMapping("/")
     public String home() {
         return "index";
-    }
+    }*/
 }
