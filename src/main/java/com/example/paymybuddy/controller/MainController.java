@@ -3,8 +3,6 @@ package com.example.paymybuddy.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import javax.annotation.security.RolesAllowed;
-
 @Controller
 public class MainController {
 
@@ -13,8 +11,8 @@ public class MainController {
         return "login";
     }
 
-   /* @GetMapping("/")
+    @GetMapping("/home")
     public String home() {
-        return "index";
-    }*/
+        return "home";
+    }
 }

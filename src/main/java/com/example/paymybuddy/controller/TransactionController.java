@@ -1,27 +1,21 @@
 package com.example.paymybuddy.controller;
 
-import com.example.paymybuddy.model.Bank;
-import com.example.paymybuddy.model.Transaction;
 import com.example.paymybuddy.service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 
-@RestController
+@Controller
 public class TransactionController {
 
-/*    @Autowired
-    private TransactionService transactionService;*/
+    @Autowired
+    private TransactionService transactionService;
 
-   /* @GetMapping(value = "/user")
-    public void getAll() {
-        transactionService.getAllTransactions();
+    @GetMapping(value = "/sendMoney")
+    public String addFriend(@RequestParam("friendEmail") String email,
+                            @RequestParam("amount") Double amount,
+                            @RequestParam("description") String description) {
+        transactionService.sendMoney(email, amount, description);
+        return "redirect:/home";
     }
-
-    @PostMapping(value = "/user")
-    public void addTransaction(@RequestBody Transaction transaction) {
-        transactionService.addTransaction(transaction);
-    }*/
 }

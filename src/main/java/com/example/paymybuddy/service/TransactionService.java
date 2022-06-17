@@ -11,23 +11,5 @@ import java.util.Optional;
 @Service
 public interface TransactionService {
 
-    /*@Autowired
-    private TransactionRepository transactionRepository;
-
-    public Iterable<Transaction> getAllTransactions() {
-        return transactionRepository.findAll();
-    }
-
-    public Optional<Transaction> getTransactionById(Integer id) {
-        return transactionRepository.findById(id);
-    }
-
-    public Transaction addTransaction(Transaction transaction) {
-        return transactionRepository.save(transaction);
-    }
-
-    public Optional<Transaction> getTransactionsByUser(User user) {
-        return transactionRepository.findByUser(user);
-    }
-*/
+    void sendMoney(String friendEmail, Double amount, String description);
 }

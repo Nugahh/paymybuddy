@@ -1,19 +1,17 @@
 package com.example.paymybuddy.service;
 
 import com.example.paymybuddy.model.User;
-import com.example.paymybuddy.repository.UserRepository;
 import com.example.paymybuddy.DTO.UserRegistrationDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -28,31 +26,43 @@ public class UserServiceImpl implements UserService {
     public void save(UserRegistrationDTO registrationDTO) {
         User user = new User(registrationDTO.getFirstName(),
                 registrationDTO.getLastName(), registrationDTO.getEmail(),
-                passwordEncoder.encode(registrationDTO.getPassword()), (double) 0, new ArrayList<>());
+                passwordEncoder.encode(registrationDTO.getPassword()), (double) 0, new HashSet<>());
 
         userRepository.save(user);
     }
 
+    @Override
     public Iterable<User> getAllUsers() {
         return userRepository.findAll();
     }
 
+    @Override
     public Optional<User> getUserByEmail(String email) {
         return Optional.ofNullable(userRepository.findByEmail(email));
     }
 
+    @Override
     public Optional<User> getUserById(Long id) {
         return userRepository.findById(id);
     }
 
+    @Override
     public void deleteById(Long id) {
         userRepository.deleteById(id);
     }
 
     @Override
-    public void addFriend(User user, User friend) {
-        user.getFriends().add(friend);
-        userRepository.save(user);
+    public void addFriend(String friendEmail) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        User currentUser = userRepository.findByEmail(username);
+
+        Set<User> contacts = currentUser.getFriends();
+
+        User friend = userRepository.findByEmail(friendEmail);
+        contacts.add(friend);
+        currentUser.setFriends(contacts);
+        userRepository.save(currentUser);
     }
 
     @Override

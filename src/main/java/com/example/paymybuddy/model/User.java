@@ -1,26 +1,68 @@
 package com.example.paymybuddy.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class User {
 
     public User() {
     }
 
-    public User(String firstName, String lastName, String email, String password, Double balance, List<User> friends) {
+    public User(String firstName, String lastName, String email, String password, Double balance, Set<User> friends) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
         this.balance = balance;
+        this.friends = friends;
+    }
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long userId;
+
+    @Column(name = "first_name")
+    private String firstName;
+
+    @Column(name = "last_name")
+    private String lastName;
+
+    @Column(unique = true, length = 50)
+    private String email;
+
+    @Column
+    private String password;
+
+    @Column
+    private Double balance;
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name="bankId")
+    private Bank bankId;
+
+    public Bank getBank() {
+        return bankId;
+    }
+
+    public void setBank(Bank bankId) {
+        this.bankId = bankId;
+    }
+
+    @ManyToMany
+    @JoinTable(
+            name = "friends",
+            joinColumns = @JoinColumn(name = "userId"),
+            inverseJoinColumns = @JoinColumn(name = "friendId"))
+
+    private Set<User> friends;
+
+    public Set<User> getFriends() {
+        return friends;
+    }
+
+    public void setFriends(Set<User> friends) {
         this.friends = friends;
     }
 
@@ -71,39 +113,5 @@ public class User {
     public void setBalance(Double balance) {
         this.balance = balance;
     }
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
-
-    @Column(name = "first_name")
-    private String firstName;
-
-    @Column(name = "last_name")
-    private String lastName;
-
-    @Column(unique = true, length = 50)
-    private String email;
-
-    @Column
-    private String password;
-
-    @Column
-    private Double balance;
-
-    @ManyToMany
-    @JoinTable(
-            name = "friends",
-            joinColumns = @JoinColumn(name = "userId"),
-            inverseJoinColumns = @JoinColumn(name = "friendId"))
-
-    private List<User> friends = new ArrayList<>();
-
-    public List<User> getFriends() {
-        return friends;
-    }
-
-    public void setFriends(List<User> friends) {
-        this.friends = friends;
-    }
 }
+
