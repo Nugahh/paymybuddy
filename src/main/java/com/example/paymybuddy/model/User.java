@@ -1,6 +1,7 @@
 package com.example.paymybuddy.model;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -38,7 +39,7 @@ public class User {
     @Column
     private Double balance;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="bankId")
     private Bank bankId;
 

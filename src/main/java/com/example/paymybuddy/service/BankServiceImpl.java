@@ -4,6 +4,7 @@ import com.example.paymybuddy.DTO.BankAccountDTO;
 import com.example.paymybuddy.model.Bank;
 import com.example.paymybuddy.model.User;
 import com.example.paymybuddy.repository.BankRepository;
+import com.example.paymybuddy.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;

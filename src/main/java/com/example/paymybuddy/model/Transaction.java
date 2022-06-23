@@ -15,6 +15,9 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long transactionId;
 
+    public Transaction() {
+    }
+
     public Transaction(Long senderId, Long receiverId, LocalDate date, double amount, String description) {
         this.senderId = senderId;
         this.receiverId = receiverId;

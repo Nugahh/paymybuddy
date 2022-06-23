@@ -12,13 +12,10 @@
           integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
           crossorigin="anonymous">
 
-   <!-- <link href=signin.css rel="stylesheet">
-    <link href=home.css rel="stylesheet">-->
-
 
     <title>Home</title>
 
-    <style>
+   <!-- <style>
         body {
             padding-top: 50px;
             padding-bottom: 50px;
@@ -27,7 +24,7 @@
         .special {
             padding-top: 50px;
         }
-    </style>
+    </style>-->
 </head>
 <body>
 <!-- Navigation menu -->
@@ -38,7 +35,7 @@
         <div>
             <ul class="nav navbar-right">
                 <li class="nav-item"><a class="nav-link active" href="home">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="transfer">Transfer</a></li>
+                <li class="nav-item"><a class="nav-link" href="/transfer">Transfer</a></li>
                 <li class="nav-item"><a class="nav-link" href="profile">Profile</a></li>
                 <li class="nav-item"><a class="nav-link" href="contact">Contact</a></li>
                 <li class="nav-item" sec:authorize="isAuthenticated()"><form
@@ -66,18 +63,18 @@
     </div>
 </div>
 <!-- Button trigger modal -->
-<!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addFriend">
     Add Friend
 </button>
 
-<div class="modal-dialog modal-dialog-centered">
-    &lt;!&ndash; Modal &ndash;&gt;
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+<div class="modal-dialog">
+    <!-- Modal -->
+    <div class="modal fade" id="addFriend" tabindex="0" aria-labelledby="addFriendLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title" id="addFriendLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form action="/addFriend" method="get">
@@ -89,25 +86,25 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-&lt;!&ndash;                    <button type="button" class="btn btn-primary">Save changes</button>&ndash;&gt;
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+<!--                    <button type="button" class="btn btn-primary">Save changes</button>-->
                 </div>
             </div>
         </div>
     </div>
 </div>
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addBank">
     Add Bank
 </button>
 
-<div class="modal-dialog modal-dialog-centered">
-    &lt;!&ndash; Modal &ndash;&gt;
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+<div class="modal-dialog">
+    <!-- Modal -->
+    <div class="modal fade" id="addBank" tabindex="0" aria-labelledby="addBankLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title" id="addBankLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form action="/addBank" method="get">
@@ -123,58 +120,24 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-&lt;!&ndash;                    <button type="button" class="btn btn-primary">Save changes</button>&ndash;&gt;
-                </div>
-            </div>
-        </div>
-    </div>
-</div>-->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-    Send Money
-</button>
-
-<div class="modal-dialog modal-dialog-centered">
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form action="/sendMoney" method="get">
-                        <div class="form-group">
-                            <label>Friend's Email <input type="text" name="friendEmail" class="form-control">
-                            </label><br>
-                            <label>Amount <input type="text" name="amount" class="form-control">
-                            </label><br>
-                            <label>Description <input type="text" name="description" class="form-control">
-                            </label><br>
-                            <button type="submit" class="btn btn-primary">Send</button>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-<!--                    <button type="button" class="btn btn-primary">Save changes</button>-->
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addBalance">
    Add Balance
 </button>
-<div class="modal-dialog modal-dialog-centered">
-    &lt;!&ndash; Modal &ndash;&gt;
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+<div class="modal-dialog">
+    <!-- Modal -->
+    <div class="modal fade" id="addBalance" tabindex="0" aria-labelledby="addBalanceLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title" id="addBalanceLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form action="/addBalance" method="get">
@@ -186,13 +149,13 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-&lt;!&ndash;                    <button type="button" class="btn btn-primary">Save changes</button>&ndash;&gt;
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+<!--                    <button type="button" class="btn btn-primary">Save changes</button>-->
                 </div>
             </div>
         </div>
     </div>
-</div>-->
+</div>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

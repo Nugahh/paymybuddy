@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+        crossorigin="anonymous">
+
+
+  <title>Home</title>
+
+  <!-- <style>
+       body {
+           padding-top: 50px;
+           padding-bottom: 50px;
+       }
+
+       .special {
+           padding-top: 50px;
+       }
+   </style>-->
+</head>
+<body>
+<!-- Navigation menu -->
+<nav class="navbar navbar-expand ">
+  <div class="container-fluid">
+    <button class="btndisabled btn btn-success center-block disabled">Pay
+      my buddy</button>
+    <div>
+      <ul class="nav navbar-right">
+        <li class="nav-item"><a class="nav-link active" href="home">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="transfer">Transfer</a></li>
+        <li class="nav-item"><a class="nav-link" href="profile">Profile</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact">Contact</a></li>
+        <li class="nav-item" sec:authorize="isAuthenticated()"><form
+                th:action="@{/logout}" method="post">
+          <input class="nav-link btn btn-primary" type="submit"
+                 value="Log Out" />
+        </form></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<nav class="nav navbar-left bg-light">
+  <ul class="nav navbar-right">
+    <li class="nav-item"><a class="nav-link active" href="home">Home
+      /</a></li>
+  </ul>
+</nav>
+<!-- End Navigation menu -->
+<div class="container px-4">
+
+  <div class="row mt-3 mb-1 justify-content-between">
+    <div class="ml-4">
+      <span class="text-left"><h4>Your Transactions</h4></span>
+    </div>
+  </div>
+</div>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#sendMoney">
+  Send Money
+</button>
+
+<div class="modal-dialog">
+  <!-- Modal -->
+  <div class="modal fade" id="sendMoney" tabindex="0" aria-labelledby="sendMoneyLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="sendMoneyLabel">Modal title</h5>
+          <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="/sendMoney" method="get">
+            <div class="form-group">
+              <label>Friend's Email <input type="text" name="friendEmail" class="form-control">
+              </label><br>
+              <label>Amount <input type="text" name="amount" class="form-control">
+              </label><br>
+              <label>Description <input type="text" name="description" class="form-control">
+              </label><br>
+              <button type="submit" class="btn btn-primary">Send</button>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <!--                    <button type="button" class="btn btn-primary">Save changes</button>-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">Sender</th>
+    <th scope="col">Amount</th>
+    <th scope="col">Receiver</th>
+    <th scope="col">Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="transaction : ${transactions}">
+    <td th:text="${transaction.senderId}"></td>
+    <td th:text="${transaction.amount}"></td>
+    <td th:text="${transaction.receiverId}"></td>
+    <td th:text="${transaction.description}"></td>
+  </tr>
+  </tbody>
+</table>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+<script
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+</body>
+</html>

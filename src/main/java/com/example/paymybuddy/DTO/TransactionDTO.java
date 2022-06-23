@@ -4,7 +4,6 @@ import javax.persistence.Column;
 
 public class TransactionDTO {
 
-    private String senderId;
     private String receiverId;
     private double amount;
     private String description;
@@ -12,19 +11,10 @@ public class TransactionDTO {
     public TransactionDTO(){
     }
 
-    public TransactionDTO(String senderId, String receiverId, double amount, String description) {
-        this.senderId = senderId;
+    public TransactionDTO(String receiverId, double amount, String description) {
         this.receiverId = receiverId;
         this.amount = amount;
         this.description = description;
-    }
-
-    public String getSenderId() {
-        return senderId;
-    }
-
-    public void setSenderId(String senderId) {
-        this.senderId = senderId;
     }
 
     public String getReceiverId() {
