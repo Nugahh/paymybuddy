@@ -17,5 +17,5 @@ public interface TransactionService {
 
     List<Transaction> getTransactions();
 
-    Optional<Transaction> getUserTransactions();
+//    List<Transaction> getUserTransactions();
 }

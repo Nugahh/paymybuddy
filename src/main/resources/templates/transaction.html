@@ -12,8 +12,7 @@
         integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
         crossorigin="anonymous">
 
-
-  <title>Home</title>
+  <title>Transfer</title>
 
   <!-- <style>
        body {
@@ -30,8 +29,9 @@
 <!-- Navigation menu -->
 <nav class="navbar navbar-expand ">
   <div class="container-fluid">
-    <button class="btndisabled btn btn-success center-block disabled">Pay
-      my buddy</button>
+    <a class="navbar-brand" href="#" th:href="@{/}">
+      <button class="btn btn-success center-block">Pay
+        my buddy</button></a>
     <div>
       <ul class="nav navbar-right">
         <li class="nav-item"><a class="nav-link active" href="home">Home</a></li>
@@ -47,12 +47,7 @@
     </div>
   </div>
 </nav>
-<nav class="nav navbar-left bg-light">
-  <ul class="nav navbar-right">
-    <li class="nav-item"><a class="nav-link active" href="home">Home
-      /</a></li>
-  </ul>
-</nav>
+
 <!-- End Navigation menu -->
 <div class="container px-4">
 
@@ -62,7 +57,7 @@
     </div>
   </div>
 </div>
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#sendMoney">
+<button style="margin-left: 10px; height: 40px;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#sendMoney">
   Send Money
 </button>
 
@@ -73,7 +68,6 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="sendMoneyLabel">Modal title</h5>
-          <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <form action="/sendMoney" method="get">
@@ -103,6 +97,7 @@
     <th scope="col">Amount</th>
     <th scope="col">Receiver</th>
     <th scope="col">Description</th>
+    <th scope="col">Date</th>
   </tr>
   </thead>
   <tbody>
@@ -111,6 +106,7 @@
     <td th:text="${transaction.amount}"></td>
     <td th:text="${transaction.receiverId}"></td>
     <td th:text="${transaction.description}"></td>
+    <td th:text="${transaction.getDate()}"></td>
   </tr>
   </tbody>
 </table>

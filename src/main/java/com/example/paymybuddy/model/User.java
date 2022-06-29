@@ -11,18 +11,23 @@ public class User {
     public User() {
     }
 
-    public User(String firstName, String lastName, String email, String password, Double balance, Set<User> friends) {
+    public User(String firstName, String lastName, String email, String password, Double balance, Set<User> friends, Bank bankId) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
         this.balance = balance;
         this.friends = friends;
+        this.bankId = bankId;
     }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
+
+    @OneToOne(mappedBy = "userId")
+    @JoinColumn(name = "bankId")
+    private Bank bankId;
 
     @Column(name = "first_name")
     private String firstName;
@@ -39,17 +44,8 @@ public class User {
     @Column
     private Double balance;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="bankId")
-    private Bank bankId;
-
-    public Bank getBank() {
-        return bankId;
-    }
-
-    public void setBank(Bank bankId) {
-        this.bankId = bankId;
-    }
+   /* @OneToMany(mappedBy = "sender")
+    private List<Transaction> transactionId;*/
 
     @ManyToMany
     @JoinTable(
@@ -58,6 +54,14 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "friendId"))
 
     private Set<User> friends;
+
+    /*public List<Transaction> getTransactionId() {
+        return transactionId;
+    }
+
+    public void setTransactionId(List<Transaction> transactionId) {
+        this.transactionId = transactionId;
+    }*/
 
     public Set<User> getFriends() {
         return friends;
@@ -113,6 +117,15 @@ public class User {
 
     public void setBalance(Double balance) {
         this.balance = balance;
+    }
+
+
+    public Bank getBankId() {
+        return bankId;
+    }
+
+    public void setBankId(Bank bankId) {
+        this.bankId = bankId;
     }
 }
 

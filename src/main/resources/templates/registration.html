@@ -9,29 +9,21 @@
           crossorigin="anonymous">
 </head>
 <body>
-    <!-- create navigation bar (header) -->
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed"
-                        data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-                        aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span> <span
-                        class="icon-bar"></span> <span class="icon-bar"></span> <span
-                        class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#" th:href="@{/}">Registration and
-                    Login Module</a>
-            </div>
-        </div>
-    </nav>
 
-    <br>
-    <br>
-    <br>
-    <!-- success message -->
-    <div th:if="${param.success}">
-        <div class="alert alert-info">You've successfully registered
+<!--
+    &lt;!&ndash; Success message &ndash;&gt;
+    <div th:if="${transactionSuccess}" th:class="${alert}">
+        <div class="alert alert-success"> Transaction successful! Receiver said: Thanks buddy :) </div>
+    </div>
+    &lt;!&ndash; Error message &ndash;&gt;
+    <div th:if="${errorNegative}" th:class="${alert}" >
+        <div class="alert alert-danger" th:text="${errorNegative}" style="font-weight:500"></div>
+-->
+
+        <!-- success message -->
+<br>
+    <div th:if="${param.success}" style="width: 20%; margin: 0 auto;">
+        <div class="alert alert-info" style="display: flex; justify-content: center">You've successfully registered
             to our awesome app!</div>
     </div>
     <!-- Create HTML registration form -->

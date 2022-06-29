@@ -1,5 +1,6 @@
 package com.example.paymybuddy.service;
 
+import com.example.paymybuddy.model.Transaction;
 import com.example.paymybuddy.model.User;
 import com.example.paymybuddy.DTO.UserRegistrationDTO;
 import com.example.paymybuddy.repository.UserRepository;
@@ -13,6 +14,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -27,14 +29,18 @@ public class UserServiceImpl implements UserService {
     public void save(UserRegistrationDTO registrationDTO) {
         User user = new User(registrationDTO.getFirstName(),
                 registrationDTO.getLastName(), registrationDTO.getEmail(),
-                passwordEncoder.encode(registrationDTO.getPassword()), (double) 0, new HashSet<>());
+                passwordEncoder.encode(registrationDTO.getPassword()), (double) 0, new HashSet<>(), null);
 
         userRepository.save(user);
     }
 
     @Override
-    public Iterable<User> getAllUsers() {
-        return userRepository.findAll();
+    public Set<User> getUsers() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        User currentUser = userRepository.findByEmail(username);
+
+        return currentUser.getFriends();
     }
 
     @Override

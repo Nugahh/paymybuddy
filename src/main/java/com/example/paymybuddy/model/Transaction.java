@@ -11,10 +11,6 @@ import java.time.LocalDateTime;
 @Table(name = "transactions")
 public class Transaction {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long transactionId;
-
     public Transaction() {
     }
 
@@ -34,12 +30,19 @@ public class Transaction {
         this.transactionId = transactionId;
     }
 
+   /* public User getSender() {
+        return sender;
+    }
+
+    public void setSender(User sender) {
+        this.sender = sender;
+    }*/
+
     public Long getSenderId() {
         return senderId;
     }
 
-    public void setSenderId(Long senderId) {
-        this.senderId = senderId;
+    public void setSenderId(Long receiverId) {
     }
 
     public Long getReceiverId() {
@@ -74,8 +77,17 @@ public class Transaction {
         this.date = date;
     }
 
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long transactionId;
+
     @Column
     private LocalDate date;
+
+  /*  @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "senderId", referencedColumnName = "transactionId")
+    private User sender;*/
 
     @Column
     private Long senderId;

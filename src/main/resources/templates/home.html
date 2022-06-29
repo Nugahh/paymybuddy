@@ -30,132 +30,99 @@
 <!-- Navigation menu -->
 <nav class="navbar navbar-expand ">
     <div class="container-fluid">
-        <button class="btndisabled btn btn-success center-block disabled">Pay
-            my buddy</button>
+        <a class="navbar-brand" href="#" th:href="@{/home}">
+            <button class="btn btn-success center-block">Pay
+                my buddy</button></a>
         <div>
             <ul class="nav navbar-right">
                 <li class="nav-item"><a class="nav-link active" href="home">Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="/transfer">Transfer</a></li>
-                <li class="nav-item"><a class="nav-link" href="profile">Profile</a></li>
-                <li class="nav-item"><a class="nav-link" href="contact">Contact</a></li>
+                <li class="nav-item"><a class="nav-link" href="/profile">Profile</a></li>
+                <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
                 <li class="nav-item" sec:authorize="isAuthenticated()"><form
                         th:action="@{/logout}" method="post">
                     <input class="nav-link btn btn-primary" type="submit"
-                           value="Log Out" />
+                           value="Log Out"/>
                 </form></li>
             </ul>
         </div>
     </div>
-</nav>
-<nav class="nav navbar-left bg-light">
-    <ul class="nav navbar-right">
-        <li class="nav-item"><a class="nav-link active" href="home">Home
-            /</a></li>
-    </ul>
 </nav>
 <!-- End Navigation menu -->
 <div class="container px-4">
 
     <div class="row mt-3 mb-1 justify-content-between">
         <div class="ml-4">
-            <span class="text-left"><h4>Your Account</h4></span>
+            <span class="text-left"><h4>Welcome to Pay My Buddy</h4></span>
         </div>
     </div>
 </div>
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addFriend">
-    Add Friend
-</button>
+<br>
+<!-- error message -->
+<div th:if="${param.error}" style="display: flex; justify-content: flex-start; width: 15%; margin-left: 10px;">
+    <div class = "alert alert-danger">Insufficient balance</div>
+</div>
+<div style=" height: 40px; width: 20%; display: flex; justify-content: flex-start">
+    <button style="margin-left: 10px;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#addBalance">
+        Credit your account
+    </button>
+    <div class="modal-dialog">
+        <!-- Modal -->
+        <div class="modal fade" id="addBalance" tabindex="0" aria-labelledby="addBalanceLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addBalanceLabel">Modal title</h5>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/addBalance" method="get">
+                            <div class="form-group">
+                                <label>Amount <input type="text" name="amount" class="form-control">
+                                </label><br>
+                                <button type="submit" class="btn btn-primary">Add</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <!--                    <button type="button" class="btn btn-primary">Save changes</button>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<div class="modal-dialog">
-    <!-- Modal -->
-    <div class="modal fade" id="addFriend" tabindex="0" aria-labelledby="addFriendLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="addFriendLabel">Modal title</h5>
-                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form action="/addFriend" method="get">
-                        <div class="form-group">
-                            <label>Friend's email  <input type="text" name="friendEmail" class="form-control">
-                            </label><br>
-                            <button type="submit" class="btn btn-primary">Add</button>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-<!--                    <button type="button" class="btn btn-primary">Save changes</button>-->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#transferMoney">
+        Withdraw Money
+    </button>
+    <div class="modal-dialog">
+        <!-- Modal -->
+        <div class="modal fade" id="transferMoney" tabindex="0" aria-labelledby="transferMoneyLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="transferMoneyLabel">Modal title</h5>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/transferMoney" method="get">
+                            <div class="form-group">
+                                <label>Amount <input type="text" name="amount" class="form-control">
+                                </label><br>
+                                <button type="submit" class="btn btn-primary">Withdraw</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <!--                    <button type="button" class="btn btn-primary">Save changes</button>-->
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addBank">
-    Add Bank
-</button>
-
-<div class="modal-dialog">
-    <!-- Modal -->
-    <div class="modal fade" id="addBank" tabindex="0" aria-labelledby="addBankLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="addBankLabel">Modal title</h5>
-                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form action="/addBank" method="get">
-                        <div class="form-group">
-                            <label>Bank name  <input type="text" name="bankName" class="form-control">
-                            </label><br>
-                            <label>IBAN  <input type="text" name="iban" class="form-control">
-                            </label><br>
-                            <label>BIC  <input type="text" name="bic" class="form-control">
-                            </label><br>
-                            <button type="submit" class="btn btn-primary">Add</button>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addBalance">
-   Add Balance
-</button>
-<div class="modal-dialog">
-    <!-- Modal -->
-    <div class="modal fade" id="addBalance" tabindex="0" aria-labelledby="addBalanceLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="addBalanceLabel">Modal title</h5>
-                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form action="/addBalance" method="get">
-                        <div class="form-group">
-                            <label>Amount <input type="text" name="amount" class="form-control">
-                            </label><br>
-                            <button type="submit" class="btn btn-primary">Add</button>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-<!--                    <button type="button" class="btn btn-primary">Save changes</button>-->
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<br>
+<p style="margin-left: 10px; font-weight: bold;" th:text="${'Wallet balance: $' + balance}"></p>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

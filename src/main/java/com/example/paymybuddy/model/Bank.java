@@ -9,7 +9,7 @@ public class Bank {
     public Bank(){
     }
 
-    public Bank(Long userId, String bankName, String iban, String bic) {
+    public Bank(User userId, String bankName, String iban, String bic) {
         this.userId = userId;
         this.bankName = bankName;
         this.iban = iban;
@@ -20,19 +20,9 @@ public class Bank {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long bankId;
 
-    @OneToOne(mappedBy = "bankId")
-    private User user;
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "userId")
-    private Long userId;
+    private User userId;
 
     @Column(name = "bank_name")
     private String bankName;
@@ -43,12 +33,12 @@ public class Bank {
     @Column(name = "bic")
     private String bic;
 
-    public Long getUserId() {
+    public User getUserId() {
         return userId;
     }
 
-    public void setUserId(Long user) {
-        this.userId = user;
+    public void setUserId(User userId) {
+        this.userId = userId;
     }
 
     public Long getBankId() {
