@@ -39,7 +39,11 @@ public class TransactionServiceImpl implements TransactionService {
         Transaction transaction = new Transaction(currentUser.getUserId(), friend.getUserId(),
                 LocalDate.now(), transactionDTO.getAmount(), transactionDTO.getDescription());
         if (currentUser.getBalance() - (transactionDTO.getAmount() + (transactionDTO.getAmount() * 0.005)) >= 0)
+        {
+            if (transactionDTO.getReceiverId().equals(transactionDTO.getSenderId()))
+                LOGGER.error("You cannot send to the same account!");
             currentUser.setBalance(currentUser.getBalance() - (transactionDTO.getAmount() + (transactionDTO.getAmount() * 0.005)));
+        }
         else
             LOGGER.error("Insufficient balance");
         friend.setBalance(friend.getBalance() + transactionDTO.getAmount());

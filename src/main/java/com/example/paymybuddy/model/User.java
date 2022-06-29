@@ -25,8 +25,8 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
 
-    @OneToOne(mappedBy = "userId")
-    @JoinColumn(name = "bankId")
+    @OneToOne(mappedBy = "userId", fetch = FetchType.EAGER)
+//    @JoinColumn(name = "bankId")
     private Bank bankId;
 
     @Column(name = "first_name")

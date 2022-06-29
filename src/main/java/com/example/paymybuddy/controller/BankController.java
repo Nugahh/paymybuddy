@@ -27,6 +27,7 @@ public class BankController {
     @Autowired
     private UserRepository userRepository;
 
+
     @GetMapping(value = "/profile")
     public String showTransactions(Model model){
         Bank bank = bankService.getBank();
@@ -36,7 +37,7 @@ public class BankController {
     }
 
     @GetMapping(value = "/addBank")
-    public String addFriend(@ModelAttribute("bank") BankAccountDTO bankAccountDTO) {
+    public String addBank(@ModelAttribute("bank") BankAccountDTO bankAccountDTO) {
         bankService.addBank(bankAccountDTO);
         return "redirect:/profile";
     }
@@ -59,9 +60,7 @@ public class BankController {
             return "redirect:home";
         }
         else
-        {
             return "redirect:/home?error";
-        }
     }
 }
 

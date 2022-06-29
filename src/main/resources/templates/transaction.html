@@ -57,6 +57,41 @@
     </div>
   </div>
 </div>
+<!--<form th:action="@{/sendMoney}" method="post" th:object="${transaction}">
+  <div class="input-group input-group-sm mb-3">
+    <span class="input-group-text col-3 justify-content-center" th:text="${balance}"></span>
+    <span class="input-group-text"> € </span>
+    <label>
+      <input type="text" class="form-control" name="number" placeholder="1.00" required>
+    </label>
+    <span class="input-group-text"> -0.5% fee will be deducted </span>
+    <div class="input-group input-group-sm mb-3">
+      <span class="input-group-text col-3 justify-content-center"> Friends</span>
+      <label>
+        <select class="form-select form-select-sm" name="email" required>
+          <option selected th:value="email" > Select friend to send money... </option>
+          <option th:each="user: ${friends}" th:text="${user.firstName}+' '+${user.lastName}+': '+${user.balance}+€" th:value="${user.email}"> </option>
+        </select>
+      </label>
+    </div>
+    <div class="input-group input-group-sm mb-3">
+      <span class="input-group-text col-3 justify-content-center"> Message </span>
+      <label>
+        <textarea class="form-control" name="message" placeholder="Write your message..." required></textarea>
+      </label>
+    </div>
+    &lt;!&ndash; Send money button &ndash;&gt;
+    <div class="d-grid gap-2 col-3 mx-auto">
+      <input class="form-control btn btn-success btn-sm" type="submit" name="sendMoney" value="Send money">
+    </div>
+  </div>
+</form>-->
+<div th:if="${param.error}" style="display: flex; justify-content: flex-start; width: 25%; margin-left: 10px;">
+  <div class = "alert alert-danger">You cannot send to this email! Try again</div>
+</div>
+<div th:if="${param.errorAmount}" style="display: flex; justify-content: flex-start; width: 15%; margin-left: 10px;">
+  <div class = "alert alert-danger">Insufficient funds</div>
+</div>
 <button style="margin-left: 10px; height: 40px;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#sendMoney">
   Send Money
 </button>
@@ -75,7 +110,9 @@
               <label>Friend's Email <input type="text" name="friendEmail" class="form-control">
               </label><br>
               <label>Amount <input type="text" name="amount" class="form-control">
-              </label><br>
+              </label>
+              <span>  -0.5% fee will be deducted </span>
+              <br>
               <label>Description <input type="text" name="description" class="form-control">
               </label><br>
               <button type="submit" class="btn btn-primary">Send</button>
@@ -84,7 +121,6 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <!--                    <button type="button" class="btn btn-primary">Save changes</button>-->
         </div>
       </div>
     </div>

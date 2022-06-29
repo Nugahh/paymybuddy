@@ -15,6 +15,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -37,6 +38,12 @@ public class BankServiceImpl implements BankService{
                 bankAccountDTO.getBic());
 
         bankRepository.save(bank);
+    }
+
+    public void deleteBank(Bank bank){
+        Optional<Bank> removeBank = bankRepository.findById(bank.getBankId());
+        if (removeBank.isPresent())
+            bankRepository.deleteById(bank.getBankId());
     }
 
     public void addBalance(Double amount){

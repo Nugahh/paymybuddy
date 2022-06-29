@@ -57,7 +57,9 @@
         </div>
     </div>
 </div>
-
+<div th:if="${param.error}" style="display: flex; justify-content: flex-start; width: 25%; margin-left: 10px;">
+    <div class = "alert alert-danger">You cannot add more than one bank!</div>
+</div>
 <button style="margin-left: 10px" type="button" class="btn btn-primary" data-toggle="modal" data-target="#addBank">
     Add Bank
 </button>
